@@ -1,6 +1,18 @@
 import csv
 import random
 
+
+def round_ans(val):
+    """
+    Rounds temperature to nearest degree
+    :param val: number to be rounded
+    :return: number rounded to the nearest degree
+    """
+    var_rounded = (val * 2 +1) // 2
+    raw_rounded = "{:.0f}".format(var_rounded)
+    return int(raw_rounded)
+
+
 #retrieve colours from csv file and put them in a list
 file= open("00_colour_list_hex_v3.csv", "r")
 all_colours = list(csv.reader(file, delimiter=","))
@@ -27,4 +39,11 @@ print(colour_scores)
 
 # find target score (median)
 
-#
+# change score to integers
+int_scores = [int(x) for x in colour_scores]
+print("scores unsorted", int_scores)
+int_scores.sort()
+print("sorted scores", int_scores)
+
+median = (int_scores[1] + int_scores[2]) / 2
+print("Median", median)
